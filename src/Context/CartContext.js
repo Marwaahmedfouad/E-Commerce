@@ -4,7 +4,6 @@ import { createContext } from "react";
 export let cartContexct = createContext()
 
 
-
 let headers = {
     token: localStorage.getItem('userToken')
 }
