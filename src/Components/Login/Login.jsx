@@ -24,6 +24,7 @@ const Login = ({ saveUserData }) => {
             .then((res) => {
                 localStorage.setItem("userToken", res.data.token)
                 saveUserData()
+                        console.log("Token saved successfully:", token);
                 navigate('/');
 
             })
