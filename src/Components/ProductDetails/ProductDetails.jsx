@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ProductDetails.module.css';
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import Slider from 'react-slick';
 import { Helmet } from 'react-helmet';
-import { toast } from 'react-hot-toast';
-import { cartContexct } from '../../Context/CartContext';
 
 
 
@@ -13,36 +11,15 @@ const ProductDetails = () => {
     let allParams = useParams()
     const [productDetails, setproductDetails] = useState(null)
     const [isLoading, setisLoading] = useState(false)
-    let { addToCart } = useContext(cartContexct)
-    const [products, setproducts] = useState([])
 
 
     async function getProductDetails() {
         setisLoading(true)
-        let { data } = await axios.get(`https://route-ecommerce.onrender.com/api/v1/products/${allParams.id}`)
+        let { data } = await axios.get(`https://ecommerce.routemisr.com/api/v1/products/${allParams.id}`)
         setproductDetails(data.data)
         setisLoading(false)
     }
-    async function addProducts(productId) {
-        let response = await addToCart(productId);
-        if (response.data.status === 'success') {
-            toast.success(response.data.message)
-        } else {
-            toast.error("something went wrongn")
-        }
 
-        console.log(response.data.message);
-    }
-
-    async function getProducts() {
-        let { data } = await axios.get('https://route-ecommerce.onrender.com/api/v1/products')
-        setproducts(data.data)
-    }
-
-
-    useEffect(() => {
-        getProducts()
-    }, []);
     useEffect(() => {
         getProductDetails()
     }, [])
@@ -95,7 +72,7 @@ const ProductDetails = () => {
                     <p>{productDetails.description}</p>
                     <p>{'Price: ' + productDetails.price + ' EGP'}</p>
                     <p>Rating: {productDetails.ratingsAverage} <i className='fas fa-star rating-color mx-2 '></i> </p>
-                    <button onClick={() => addProducts(productDetails._id)} className='btn bg-main text-white w-50 mx-auto'>+ Add </button>
+                    <button className='btn bg-main text-white w-50 mx-auto'>+ Add </button>
                 </div>
             </div>
                 : <div className='position-fixed top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center'>
