@@ -11,22 +11,30 @@ const Login = ({ saveUserData }) => {
     const [messageError, setMessageError] = useState(null);
     const navigate = useNavigate();
 
-    const handleLogin = async (values) => {
-        setIsLoading(true);
-        try {
-            const res = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values);
-const token = res.data?.token || res.data?.accessToken; // Example for a different structure
-            localStorage.setItem("userToken", token); // Save token in localStorage
+async function handleLogin(values) {
+    setIsLoading(true);
+    try {
+        const res = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values);
+        console.log("Response from API:", res.data);
+
+        const token = res.data?.token;
+        if (token) {
+            localStorage.setItem("userToken", token);
             console.log("Token saved successfully:", token);
             saveUserData();
             navigate('/');
-        } catch (err) {
-            setMessageError(err.response?.data?.message || "Something went wrong. Please try again.");
-            console.error(err);
-        } finally {
-            setIsLoading(false);
+        } else {
+            console.error("Token is missing in response:", res.data);
+            setMessageError("Login failed. Token is missing.");
         }
-    };
+    } catch (err) {
+        setMessageError(err.response?.data?.message || "Something went wrong. Please try again.");
+        console.error("Error during login:", err);
+    } finally {
+        setIsLoading(false);
+    }
+}
+
 
     const validationSchema = Yup.object({
         email: Yup.string()
