@@ -33,15 +33,7 @@ const Navbar = (userData, saveUserData) => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="cart">Cart</Link>
                             </li>
-{/*                             <li className="nav-item">
-                                <Link className="nav-link" to="products">Products</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="categories">Categories</Link>
-                            </li> */}
-                            <li className="nav-item">
-                                <Link className="nav-link" to="brands">Brands</Link>
-                            </li>
+
                         </ul>
 
                         <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
