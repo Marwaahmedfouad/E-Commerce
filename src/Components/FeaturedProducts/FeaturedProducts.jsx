@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { cartContexct } from '../../Context/CartContext';
 import { toast } from 'react-hot-toast';
-import { Helmet } from 'react-helmet';
 
 
 
@@ -38,11 +37,7 @@ const FeaturedProducts = () => {
     return (
         <>
 
-            <div className="application">
-                <Helmet>
-                    <title>Featured Products</title>
-                </Helmet>
-            </div>
+
             <div className='row m-0 '>
                 {products.map((product, index) =>
 
