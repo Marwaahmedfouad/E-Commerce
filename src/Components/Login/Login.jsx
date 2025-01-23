@@ -15,7 +15,7 @@ const Login = ({ saveUserData }) => {
         setIsLoading(true);
         try {
             const res = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values);
-            const token = res.data.token;
+const token = res.data?.token || res.data?.accessToken; // Example for a different structure
             localStorage.setItem("userToken", token); // Save token in localStorage
             console.log("Token saved successfully:", token);
             saveUserData();
