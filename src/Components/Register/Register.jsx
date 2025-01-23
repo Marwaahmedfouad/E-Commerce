@@ -20,7 +20,7 @@ const Register = () => {
 
     function handleRegister(values) {
         setIsLoading(true);
-        axios.post('https://route-ecommerce.onrender.com/api/v1/auth/signup', values)
+        axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup', values)
             .then((res) => {
                 navigate('/login');
                 console.log(res);
