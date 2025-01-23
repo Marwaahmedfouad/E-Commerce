@@ -9,6 +9,7 @@ const Cart = () => {
     let { getLoggedUserCart, removeItem, updateProductCount, clearUserCart } = useContext(cartContexct)
     const [cartDetails, setcartDetails] = useState(null)
     console.log(cartDetails);
+
     async function getCart() {
         let response = await getLoggedUserCart()
         if (response?.data?.status === 'success') {
