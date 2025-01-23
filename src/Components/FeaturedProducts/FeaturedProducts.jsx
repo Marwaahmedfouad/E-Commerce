@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { cartContexct } from '../../Context/CartContext';
 import { toast } from 'react-hot-toast';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -26,7 +27,7 @@ const FeaturedProducts = () => {
     }
 
     async function getProducts() {
-        let { data } = await axios.get('https://route-ecommerce.onrender.com/api/v1/products')
+        let { data } = await axios.get('https://ecommerce.routemisr.com/api/v1/products')
         setproducts(data.data)
     }
 
@@ -37,7 +38,11 @@ const FeaturedProducts = () => {
     return (
         <>
 
-
+            <div className="application">
+                <Helmet>
+                    <title>Featured Products</title>
+                </Helmet>
+            </div>
             <div className='row m-0 '>
                 {products.map((product, index) =>
 
